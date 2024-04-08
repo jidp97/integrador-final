@@ -1,15 +1,15 @@
 import "./logo.svg";
 import "./App.css";
-import HomePage from "./components/HomePage";
+import HomePage from "./pages/HomePage";
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 function App() {
-const router = createBrowserRouter([
-{
-  path: "/",
-  element: <HomePage />
-}
-]);
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <HomePage />,
+    },
+  ]);
   return (
     <>
       <RouterProvider router={router} />
