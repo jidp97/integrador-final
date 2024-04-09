@@ -1,3 +1,4 @@
+import AltRoutes from "./AltRoutes";
 import React from "react";
 
 function Home() {
@@ -33,19 +34,13 @@ function Home() {
                   Te garantizamos las mejores rutas y disponibilidad de los
                   transportes públicos cerca de ti.
                 </p>
+                <AltRoutes />
                 <a
                   href="/"
-                  className="btn btn-warning text-white btn-xl shadow mx-5 me-3 rounded-0 my-5"
-
+                  className="btn btn-primary text-white btn-xl shadow mx-5 me-3 rounded-0 my-5"
                 >
-                  Rutas Alternas
+                  Reporta un problema vial
                 </a>
-                <a
-          href="/"
-          className="btn btn-primary text-white btn-xl shadow mx-5 me-3 rounded-0 my-5"
-        >
-          Reporta un problema vial
-        </a>
               </div>
             </div>
           </div>
