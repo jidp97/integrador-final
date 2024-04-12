@@ -1,6 +1,6 @@
 import React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import Home  from "../components/HomePage/Home";
+import { Outlet } from 'react-router';
 import TopNav from "../components/TopNav";
 
 function HomePage() {
@@ -9,7 +9,7 @@ function HomePage() {
       <CssBaseline />
       <TopNav isFixedTop={false} />
       <main>
-          <Home/>
+        <Outlet />
       </main>
     </React.Fragment>
   );
