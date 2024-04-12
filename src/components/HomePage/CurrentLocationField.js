@@ -1,17 +1,69 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import IconButton from "@mui/material/IconButton";
-import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
-import LocationDisabledIcon from '@mui/icons-material/LocationDisabled';
+import LocationSearchingIcon from "@mui/icons-material/LocationSearching";
+import LocationDisabledIcon from "@mui/icons-material/LocationDisabled";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
-function CurrentLocationField() {
-  const [showLocation, setShowLocation] = React.useState(true);
 
-  const handleClickShowLocation = () => setShowLocation((show) => !show);
+function CurrentLocationField() {
+  const [location, setLocation] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!location) {
+      setLoading(true);
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyBT4Ame3d86d3vtxyEnaX1i_ILjdZWSSNY`);
+            const data = await response.json();
+            const address = data.results[0].formatted_address;
+            setLocation(address);
+          } catch (err) {
+            setError("Error al obtener la ubicación.");
+          }
+          setLoading(false);
+        },
+        (err) => {
+          setError(err.message);
+          setLoading(false);
+        }
+      );
+    }
+  }, [location]);
+
+  const handleClickShowLocation = () => {
+    if (!location) {
+      setLoading(true);
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyBT4Ame3d86d3vtxyEnaX1i_ILjdZWSSNY`);
+            const data = await response.json();
+            const address = data.results[0].formatted_address;
+            setLocation(address);
+          } catch (err) {
+            setError("Error al obtener la ubicación.");
+          }
+          setLoading(false);
+        },
+        (err) => {
+          setError(err.message);
+          setLoading(false);
+        }
+      );
+    } else {
+      setLocation(null);
+    }
+  };
 
   const handleMouseDownLocation = (event) => {
     event.preventDefault();
   };
+
   return (
     <>
       <Paper
@@ -26,15 +78,21 @@ function CurrentLocationField() {
           onMouseDown={handleMouseDownLocation}
           edge="end"
         >
-          {showLocation ? <LocationDisabledIcon /> : <LocationSearchingIcon />}
+          {location ? <LocationDisabledIcon /> : <LocationSearchingIcon />}
         </IconButton>
         <InputBase
-        sx={{ ml: 1, flex: 1 }}
-        placeholder="   Usar tu ubicación actual"
-        inputProps={{ 'aria-label': 'your current location' }}
-        readOnly //fíjate que aquí está readonly y por eso no puedes escribir en el campo, quítalo en caso de que quieras escribir, ya sábes máquina ;)
-      />
+          sx={{ ml: 1, flex: 1 }}
+          placeholder="  Usar tu ubicación actual"
+          inputProps={{
+            'aria-label': 'Tu ubicación actual',
+            'aria-readonly': true,
+          }}
+          value={location || ""}
+          readOnly
+        />
       </Paper>
+      {loading && <p>Cargando ubicación...</p>}
+      {error && <p>Error al obtener la ubicación: {error}</p>}
     </>
   );
 }
