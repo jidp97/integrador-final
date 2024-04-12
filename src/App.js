@@ -1,21 +1,18 @@
 import "./logo.svg";
 import "./App.css";
 import HomePage from "./pages/HomePage";
-import { Home } from "./components/HomePage/Home";
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SignUpForm from "./components/HomePage/SignUpForm";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <HomePage />,
+    },
+  ]);
   return (
     <>
-      <Routes>
-
-        <Route path="/" element={<HomePage />}>
-          <Route index element={<Home />} />
-          <Route path="/registrar" element={<SignUpForm />} />
-        </Route>
-       
-      </Routes>
+      <RouterProvider router={router} />
     </>
   );
 }
