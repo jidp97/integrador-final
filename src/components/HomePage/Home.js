@@ -1,7 +1,7 @@
 import AltRoutes from "./AltRoutes";
 import React from "react";
 
-function Home() {
+export const Home = () => {
   return (
     <div
       className="wrapper"

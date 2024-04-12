@@ -60,7 +60,7 @@ function TopNav({ isFixedTop, showLinks = true}) {
         <div className={linkClasses} id="navbarSupportedContent">
           {showLinks &&
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <NavLink goTo="#signin" name="Regístrate" ariaLabel="Regístrate" />
+            <NavLink goTo="/registrar" name="Regístrate" ariaLabel="Regístrate" />
             <NavLink goTo="#login" name="Inicia sesión" ariaLabel="Inicia sesión" />    
           </ul>}
         </div>
