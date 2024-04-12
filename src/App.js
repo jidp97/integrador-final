@@ -9,6 +9,10 @@ function App() {
       path: "/",
       element: <HomePage />,
     },
+    {
+      path: "/signup",
+      element: <SignUpForm />,
+    }
   ]);
   return (
     <>
