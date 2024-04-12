@@ -34,9 +34,9 @@ const StyledDialog = styled(Dialog)(({ theme }) => ({
     fontWeight: 600,
   },
 }));
-const YOUR_INITIAL_LATITUDE = 40.7128; // Ejemplo: Latitud de Nueva York
-const YOUR_INITIAL_LONGITUDE = -74.0060; // Ejemplo: Longitud de Nueva York
-const YOUR_INITIAL_ZOOM_LEVEL = 12; // Ejemplo: Nivel de zoom para mostrar la ciudad
+const YOUR_INITIAL_LATITUDE = 18.475955; 
+const YOUR_INITIAL_LONGITUDE = -69.9103679; 
+const YOUR_INITIAL_ZOOM_LEVEL = 12; 
 
 export default function AltRoutes()  {
   const [open, setOpen] = useState(false);
